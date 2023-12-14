@@ -8,25 +8,22 @@ padraoRostos = cv2.CascadeClassifier('C:\\Users\\FABIANA\\IdeaProjects\\terceira
 def gatinhos(gatos) :
 	imagem = cv2.imread(gatos)
 	imagemCinza = cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
-	faceDetect = padraoRostos.detectMultiScale(imagemCinza, scaleFactor=1.1, minNeighbors=6, minSize=(100,105))
+	faceDetect = padraoRostos.detectMultiScale(imagemCinza, scaleFactor=1.1, minNeighbors=7, minSize=(75,80))
 
 	numero_de_gatinhos = 0
 
 	for (x, y, l, a) in faceDetect:
 		# Mostrar as coordenadas x, y, largura e altura de cada ocorrência
 		print(f'Coordenadas da ocorrência {numero_de_gatinhos + 1}:')
-		print(f'   - X: {x}')
-		print(f'   - Y: {y}')
-		print(f'   - Largura: {l}')
-		print(f'   - Altura: {a}')
+		print(f'X: {x}')
+		print(f'Y: {y}')
+		print(f'Largura: {l}')
+		print(f'Altura: {a}')
 
-		# Desenhar o retângulo na imagem original
 		cv2.rectangle(imagem, (x, y), (x + l, y + a), (255, 0, 0), 5)
 
-		# Incrementar o contador de gatos
 		numero_de_gatinhos += 1
 
-	# Mostrar o número total de gatos identificados
 	print(f'Total de gatos identificados: {numero_de_gatinhos}')
 
 	for (x, y, l, a) in faceDetect:
